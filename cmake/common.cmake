@@ -1,0 +1,11 @@
+function(IsDigitNumber STR OutputBool)
+    string(REGEX MATCH "^[0-9]+$" IS_DIGIT ${STR})
+    set(${OutputBool} ${IS_DIGIT} PARENT_SCOPE)
+endfunction()
+
+macro(ParseArguments PREFIX)
+    set(_options "")
+    set(_one_value_keywords "")
+    set(_multi_value_keywords "")
+    cmake_parse_arguments(${PREFIX} ${_options} ${_one_value_keywords} ${_multi_value_keywords})
+endmacro()
