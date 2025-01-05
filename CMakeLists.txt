@@ -20,7 +20,8 @@ message(STATUS "GetGitLastCommitHash(10Bits): ${commit_hash}")
 GetGitLastCommitHash(commit_hash 50)
 message(STATUS "GetGitLastCommitHash(50Bits): ${commit_hash}")
 
-GetGitPathLastCommitHash(cmake commit_hash)
+GetGitPathLastCommitHash("" commit_hash)
+message(STATUS "GetGitPathLastCommitHash: ${commit_hash}")
 
 GetGitCommitCount(commit_count)
 message(STATUS "GetGitCommitCount: ${commit_count}")
