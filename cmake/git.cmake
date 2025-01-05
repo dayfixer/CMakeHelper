@@ -50,7 +50,7 @@ function(GetGitCommitCount OutputInt)
     set(${OutputInt} ${GIT_COMMIT_COUNT} PARENT_SCOPE)
 endfunction()
 
-function(GetGitPathCommitCount OutputInt)
+function(GetGitPathCommitCount InputRelPath OutputInt)
     execute_process(
             COMMAND git rev-list --count HEAD -- ${InputRelPath}
             WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
