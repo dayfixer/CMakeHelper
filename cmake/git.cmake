@@ -1,3 +1,9 @@
+
+find_package(Git REQUIRED)
+if(NOT Git_FOUND)
+    message(FATAL_ERROR "Git Not Found.")
+endif()
+
 ## Hash
 function(GetGitLastCommitHash OutputStr)
     execute_process(

@@ -1,7 +1,5 @@
 
-message(STATUS "==================== Test BEGIN ====================")
 
-message(STATUS "---- git.cmake ---")
 GetGitLastCommitHash(commit_hash)
 message(STATUS "GetGitLastCommitHash: ${commit_hash}")
 GetGitLastCommitHash(commit_hash 10)
@@ -26,4 +24,3 @@ message(STATUS "GetGitPathLastTimeStamp: ${Y_TEST_RELPATH} - ${commit_timestamp}
 GetGitPathLastCommitter(${Y_TEST_RELPATH} commit_committer)
 message(STATUS "GetGitPathLastCommitter: ${Y_TEST_RELPATH} - ${commit_committer}")
 
-message(STATUS "==================== Test END ====================")

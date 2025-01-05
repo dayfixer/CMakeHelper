@@ -1,0 +1,28 @@
+option(OptionA "OptionA" ON)
+option(OptionB "OptionB" ON)
+option(OptionC "OptionC" ON)
+option(OptionD "OptionD" ON)
+option(OptionE "OptionE" ON)
+option(OptionF "OptionF" ON)
+option(OptionG "OptionG" ON)
+set(Options OptionA OptionB OptionC OptionD OptionE OptionF OptionG)
+
+macro(PrintOptions)
+    if (${ARGN})
+        foreach (arg IN LISTS ${ARGN})
+            message(STATUS ${arg}: ${${arg}})
+        endforeach ()
+    endif ()
+endmacro()
+
+message(STATUS "Set OptionA OFF:")
+SetExclude(OptionA OFF Options)
+PrintOptions(Options)
+
+message(STATUS "Set OptionB OFF:")
+SetExclude(OptionB OFF Options)
+PrintOptions(Options)
+
+message(STATUS "Set OptionG OFF:")
+SetExclude(OptionG OFF Options)
+PrintOptions(Options)
