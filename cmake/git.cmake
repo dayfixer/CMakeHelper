@@ -1,5 +1,4 @@
 ## Hash
-
 function(GetGitLastCommitHash OutputStr)
     execute_process(
             COMMAND git rev-parse HEAD
@@ -20,6 +19,7 @@ function(GetGitLastCommitHash OutputStr)
 endfunction()
 
 function(GetGitPathLastCommitHash InputRelPath OutputStr)
+    # %h for short hash
     execute_process(
             COMMAND git log -1 --format=%H ${InputRelPath}
             WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
@@ -39,7 +39,6 @@ function(GetGitPathLastCommitHash InputRelPath OutputStr)
 endfunction()
 
 ## Commit count
-
 function(GetGitCommitCount OutputInt)
     execute_process(
             COMMAND git rev-list --count HEAD
@@ -61,8 +60,7 @@ function(GetGitPathCommitCount InputRelPath OutputInt)
 endfunction()
 
 ## TimeStamp
-
-function(GetGitPathTimeStamp InputRelPath OutputInt)
+function(GetGitPathLastTimeStamp InputRelPath OutputInt)
     execute_process(
             COMMAND git log -1 --format=%ct ${InputRelPath}
             WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
@@ -71,3 +69,17 @@ function(GetGitPathTimeStamp InputRelPath OutputInt)
     )
     set(${OutputInt} ${GIT_COMMIT_TS} PARENT_SCOPE)
 endfunction()
+
+## Commiter
+function(GetGitPathLastCommitter InputRelPath OutputStr)
+    # Author: %an
+    execute_process(
+            COMMAND git log -1 --format=%cn ${InputRelPath}
+            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+            OUTPUT_VARIABLE GIT_COMMIT_AUTHOR
+            OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    set(${OutputStr} ${GIT_COMMIT_AUTHOR} PARENT_SCOPE)
+endfunction()
+
+# Other: %s: Commit contents
