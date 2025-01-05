@@ -49,3 +49,25 @@ function(GetGitCommitCount OutputInt)
     )
     set(${OutputInt} ${GIT_COMMIT_COUNT} PARENT_SCOPE)
 endfunction()
+
+function(GetGitPathCommitCount OutputInt)
+    execute_process(
+            COMMAND git rev-list --count HEAD -- ${InputRelPath}
+            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+            OUTPUT_VARIABLE GIT_COMMIT_COUNT
+            OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    set(${OutputInt} ${GIT_COMMIT_COUNT} PARENT_SCOPE)
+endfunction()
+
+## TimeStamp
+
+function(GetGitPathTimeStamp InputRelPath OutputInt)
+    execute_process(
+            COMMAND git log -1 --format=%ct ${InputRelPath}
+            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+            OUTPUT_VARIABLE GIT_COMMIT_TS
+            OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    set(${OutputInt} ${GIT_COMMIT_TS} PARENT_SCOPE)
+endfunction()

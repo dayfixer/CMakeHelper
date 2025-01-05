@@ -20,10 +20,13 @@ message(STATUS "GetGitLastCommitHash(10Bits): ${commit_hash}")
 GetGitLastCommitHash(commit_hash 50)
 message(STATUS "GetGitLastCommitHash(50Bits): ${commit_hash}")
 
-GetGitPathLastCommitHash("" commit_hash)
-message(STATUS "GetGitPathLastCommitHash: ${commit_hash}")
+set(Y_TEST_RELPATH "test")
+GetGitPathLastCommitHash(${Y_TEST_RELPATH} commit_hash)
+message(STATUS "GetGitPathLastCommitHash: ${Y_TEST_RELPATH} - ${commit_hash}")
 
 GetGitCommitCount(commit_count)
 message(STATUS "GetGitCommitCount: ${commit_count}")
+GetGitPathCommitCount(${Y_TEST_RELPATH} commit_count)
+message(STATUS "GetGitPathCommitCount: ${Y_TEST_RELPATH} - ${commit_count}")
 
 message(STATUS "==================== Test END ====================")
